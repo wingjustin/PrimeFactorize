@@ -81,7 +81,7 @@ namespace prime_factorize
         private long reduce(long x) // x / r
         {
             long r = 1 << this.rPow;
-            long q = ((x % r) * this.n_) % r;
+            long q = ((x & (r - 1)) * this.n_) & (r - 1);
             long a = (x - q * this.n) >> this.rPow;
 
             if (a < 0)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrimeFactorize")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7d7be6d04c172b988c310ea9add44da09dcd55b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91b4aa71610dbd316e22d7799f63b5c95bd66c6f")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrimeFactorize")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrimeFactorize")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
