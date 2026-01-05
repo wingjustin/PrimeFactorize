@@ -66,9 +66,8 @@ namespace prime_factorize
                 rPow++;
             }
 
-            for (int i = 0; i < rPow;)
+            for (int i = 1; i < rPow; i = i << 1)
             {
-                ++i;
                 n_ = n_ * (2 - n_ * n) % (1 << i);
                 if (n_ < 0)
                     n_ += (1 << i);
