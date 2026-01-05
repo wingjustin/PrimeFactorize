@@ -45,8 +45,7 @@ namespace prime_factorize
 
         long n;
         long n_;// n'
-        int pr; // power of r by 2
-        int nTwoPow;
+        int rPow;//r=2^(rPow)
 
         public MontgomeryModuleMultiply(long mod)
         {
@@ -59,35 +58,32 @@ namespace prime_factorize
 
             long n = mod;
             long n_ = 1;
-            int nTwoPow = 0;
-            int pr = 1; // 2^1
+            int rPow = 0;
 
             while ((n & 1) == 0)
             {
                 n >>= 1;
-                nTwoPow++;
+                rPow++;
             }
 
-            while ((1 << pr) < n)
+            for (int i = 0; i < rPow;)
             {
-                pr += 2;
-                long tmp1 = n_ & ((1 << pr) - 1); // n' mod r
-                long tmp2 = (1 << pr) + 2 - tmp1 * (n & ((1 << pr) - 1)); // r + 2 - n*(n') mod r
-                n_ = (tmp1 * tmp2) & ((1 << pr) - 1);
+                ++i;
+                n_ = n_ * (2 - n_ * n) % (1 << i);
+                if (n_ < 0)
+                    n_ += (1 << i);
             }
 
             this.n = n;
             this.n_ = n_;
-            this.pr = pr;
-            this.nTwoPow = nTwoPow;
-
-            this.y = 1 << pr;
+            this.rPow = rPow;
         }
 
-        private long reduce(long x)
+        private long reduce(long x) // x / r
         {
-            long q = ((x & ((1 << pr) - 1)) * n_) & ((1 << pr) - 1); // let q := n'x mod r
-            long a = (x - q * n) >> pr;
+            long r = 1 << this.rPow;
+            long q = ((x % r) * this.n_) % r;
+            long a = (x - q * this.n) >> this.rPow;
 
             if (a < 0)
                 a += n;
